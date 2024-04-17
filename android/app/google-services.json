@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "547656810736",
+    "project_id": "hemocell-5b31f",
+    "storage_bucket": "hemocell-5b31f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547656810736:android:f1de0de2e9e11729454235",
+        "android_client_info": {
+          "package_name": "com.example.hemo_cell"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOdp3TPOZWEuNOeQkvOxpMm3ErgNG-e5w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

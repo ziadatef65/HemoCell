@@ -1,12 +1,15 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hemo_cell/layout/cubit/cubit.dart';
 import 'package:hemo_cell/layout/cubit/states.dart';
 import 'package:hemo_cell/modules/login/login_screen.dart';
+import 'package:hemo_cell/modules/myDonations/my_donations_screen.dart';
 import 'package:hemo_cell/shared/components/constants.dart';
 
 import '../../shared/components/components.dart';
@@ -152,138 +155,165 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 20, top: 0, bottom: 20),
-                          child: Material(
-                            elevation: 5,
-                            borderRadius: BorderRadius.circular(15),
-                            child: Container(
-                              clipBehavior: Clip.hardEdge,
-                    
-                              height: 100,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                    
-                                  borderRadius: BorderRadius.circular(15),
-                                  gradient: LinearGradient(
-                                    colors: [
-                    
-                                      Colors.black,
-                                      mainColor
-                                    ],
-                                  )
-                              ),
-                              child: Stack(
-                                clipBehavior: Clip.hardEdge,
-                                children: [
-                    
-                    
-                                  Positioned(
-                                    left: 20,
-                                    top: 10,
-                                    right: 20,
-                                    bottom: 5,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'You have donated with us a number of times',
-                                          style: GoogleFonts.lato(
-                                            fontSize: 16,
+                       Padding(
+                         padding: const EdgeInsets.only(left: 25,right: 20,top: 10,bottom: 20),
+                         child: Container(
+                           height: 100,
+                           width: double.infinity,
+                           decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(15),
+                             gradient: LinearGradient(
+                               colors: [
+                                 Colors.black,
+                                 mainColor,
+                               ]
+                             )
+                           ),
+                           child: Stack(
+                             children: [
+                               Positioned(
+                                 left: 20,
+                                 top: 15,
+                                 child: Text(
+                                   'My donations',
+                                   style: GoogleFonts.lato(
+                                     fontSize:20,
+                                     color:Colors.white,
+                                     fontWeight: FontWeight.bold,
+                                   ),
+                                 ),
+                               ),
+                               Positioned(
+                                 bottom: 5,
+                                 right: 5,
+                                 child: IconButton(
+                                 onPressed: (){
+                                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MyDonationsScreen()));
+                                 },
+                                     icon: const Icon(Icons.chevron_right,color: Colors.white,size: 32,)
+                                 ),
+                               ),
+                             ],
+                           ),
+                         ),
+                       ),
+                        Row(
+                          children: [
+                            SizedBox(width: 20,),
+
+                            Expanded(
+                              child: Material(
+                                elevation: 5,
+                                borderRadius: BorderRadius.circular(15),
+                                child: Container(
+                                  clipBehavior: Clip.hardEdge,
+                                  height: 100,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      gradient: LinearGradient(
+                                        colors: [Colors.black, mainColor],
+                                      )),
+                                  child: Stack(
+                                    clipBehavior: Clip.hardEdge,
+                                    children: [
+                                      Positioned(
+                                        left: 20,
+                                        top: 10,
+                                        right: 20,
+                                        bottom: 5,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'You have donated with us a number of times',
+                                              style: GoogleFonts.lato(
+                                                fontSize: 16,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Positioned(
+                                        right: 20,
+                                        bottom: 5,
+                                        child: Text(
+                                          ' ${data?['numberOfBloodDonations']}',
+                                          style: GoogleFonts.bangers(
+                                            fontSize: 20,
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                    
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned(
-                                    right: 20,
-                                    bottom: 5,
-                                    child: Text(
-                                      ' ${data?['numberOfBloodDonations']}',
-                                      style: GoogleFonts.bangers(
-                                        fontSize: 20,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
                                       ),
-                                    ),
+                                    ],
                                   ),
-                    
-                                ],
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 20, top: 0, bottom: 20),
-                          child: Material(
-                            elevation: 5,
-                            borderRadius: BorderRadius.circular(15),
-                            child: Container(
-                              clipBehavior: Clip.hardEdge,
-                    
-                              height: 100,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                    
-                                  borderRadius: BorderRadius.circular(15),
-                                  gradient: LinearGradient(
-                                    colors: [
-                    
-                                      Colors.black,
-                                      mainColor
-                                    ],
-                                  )
-                              ),
-                              child: Stack(
-                                clipBehavior: Clip.hardEdge,
-                                children: [
-                    
-                    
-                                  Positioned(
-                                    left: 20,
-                                    top: 10,
-                                    right: 20,
-                                    bottom: 5,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'We helped you obtain a number of blood bags',
-                                          style: GoogleFonts.lato(
-                                            fontSize: 16,
+                            SizedBox(width: 5,),
+                            Expanded(
+                              child: Material(
+                                elevation: 5,
+                                borderRadius: BorderRadius.circular(15),
+                                child: Container(
+                                  clipBehavior: Clip.hardEdge,
+                                  height: 100,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      gradient: LinearGradient(
+                                        colors: [Colors.black, mainColor],
+                                      )),
+                                  child: Stack(
+                                    clipBehavior: Clip.hardEdge,
+                                    children: [
+                                      Positioned(
+                                        left: 20,
+                                        top: 10,
+                                        right: 20,
+                                        bottom: 5,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'We helped you obtain a number of blood bags',
+                                              style: GoogleFonts.lato(
+                                                fontSize: 16,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Positioned(
+                                        right: 20,
+                                        bottom: 5,
+                                        child: Text(
+                                          ' ${data?['numberOfBloodRecipient']}',
+                                          style: GoogleFonts.bangers(
+                                            fontSize: 20,
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                    
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned(
-                                    right: 20,
-                                    bottom: 5,
-                                    child: Text(
-                                      ' ${data?['numberOfBloodRecipient']}',
-                                      style: GoogleFonts.bangers(
-                                        fontSize: 20,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
                                       ),
-                                    ),
+                                    ],
                                   ),
-                    
-                                ],
+                                ),
                               ),
                             ),
-                          ),
+                            SizedBox(width: 20,),
+
+                          ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 25,right: 20,top: 10),
+                          padding: const EdgeInsets.only(left: 25,right: 20,top: 20),
                           child: Container(
                             width: double.infinity,
                             height: 70,
@@ -304,14 +334,14 @@ class ProfileScreen extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                    
+
                                 ),
                                 Positioned(
                                   bottom: 5,
                                   right: 5,
                                   child: IconButton(
                                       onPressed: (){
-                    
+
                                       }
                                       ,
                                       icon: const Icon(Icons.settings,size: 32,color: Colors.white,)),
@@ -358,6 +388,7 @@ class ProfileScreen extends StatelessWidget {
                                                 MaterialPageRoute(
                                                     builder: (context) => LoginScreen()),
                                                     (route) => false);
+                                            MainCubit.get(context).currentIndex=0;
                                           }
                                         });
                                       }

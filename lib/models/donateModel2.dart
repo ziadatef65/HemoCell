@@ -11,6 +11,7 @@ class DonateModel2 {
   String? userId;
   String? nameOfEvent;
   Timestamp? timestampOfBegin;
+  bool? isDone;
 
   DonateModel2({
     this.name,
@@ -23,6 +24,7 @@ class DonateModel2 {
     this.nameOfEvent,
 
     this.timestampOfBegin,
+    this.isDone,
 
   });
 
@@ -36,6 +38,7 @@ class DonateModel2 {
     periodOfDonatedBefore = json['Period of donated before'];
     timestampOfBegin = json['timestampOfBegin'];
     nameOfEvent = json['nameOfEvent'];
+    isDone = json['isDone'];
   }
 
   Map<String, dynamic> toMap() {
@@ -49,6 +52,7 @@ class DonateModel2 {
       'timestampOfBegin': timestampOfBegin,
       'userId': userId,
       'nameOfEvent': nameOfEvent,
+      'isDone': isDone,
 
     };
   }

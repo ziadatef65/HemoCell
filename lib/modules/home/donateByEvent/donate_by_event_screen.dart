@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hemo_cell/layout/hemo_cell_layout.dart';
 import 'package:hemo_cell/modules/donate/cubit/states.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
 
 import '../../../shared/components/components.dart';
 import '../../donate/cubit/cubit.dart';
@@ -21,7 +23,7 @@ final nameOfEvent;
    DonateByEventScreen({super.key,this.nameOfEvent});
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<VotesFanCubit,DonateBloodStates>(
+    return BlocConsumer<DonateCubit,DonateBloodStates>(
       listener: (context,state){},
       builder: (context,state){
         return Scaffold(
@@ -31,7 +33,7 @@ final nameOfEvent;
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: Form(
                 key: formKey,
                 child: Column(
@@ -373,15 +375,13 @@ final nameOfEvent;
                               }
 
                               // Check if the period is within the allowed range for donation
-                              if (donationPeriod >= 2 && donationPeriod <= 4) {
+                              if (donationPeriod >= 4) {
                                 return null; // Value is valid
                               } else if (donationPeriod < 2) {
                                 int remainingDays = 2 - donationPeriod;
-                                return 'Donation is not allowed at the moment. Please wait for an additional $remainingDays week(s).';
-                              } else {
-                                int remainingDays = donationPeriod - 4;
-                                return 'Donation is not allowed at the moment. The allowed period has been exceeded by $remainingDays week(s).';
+                                return 'Donation is not allowed. Please wait for an additional $remainingDays week(s).';
                               }
+
                             },
                             controller: donateBloodBeforePeriodController,
                             keyboardType: TextInputType.number,
@@ -428,7 +428,22 @@ final nameOfEvent;
                         child: TextButton(
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              VotesFanCubit.get(context).donateByEvent(nameOfEvent, nameController.text, int.parse(ageController.text), genderController.text, donateBloodBeforeController.text, chronicDiseasesAnswerController.text, int.parse(donateBloodBeforePeriodController.text));
+                              DonateCubit.get(context).donateByEvent(nameOfEvent, nameController.text, int.parse(ageController.text), genderController.text, donateBloodBeforeController.text, chronicDiseasesAnswerController.text, int.parse(donateBloodBeforePeriodController.text));
+                              PanaraInfoDialog.showAnimatedShrink(
+                                context,
+                                color: mainColor,
+                                message: 'Thank you for donating and using our app\n\nYour donation will be placed for twenty-four hours on our system. The donation will be confirmed when you are in any of our locations, but if twenty-four hours have passed since the donation request, the donation will be considered void.',
+
+                                noImage: false,
+                                panaraDialogType:
+                                PanaraDialogType.custom,
+                                buttonText: 'Okay',
+                                onTapDismiss: () {
+                                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>HemoCellLayout()), (route) => false);
+                                 
+                                },
+
+                              );
                             }
                           },
                           child: Text(

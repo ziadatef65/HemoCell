@@ -6,10 +6,10 @@ import 'package:hemo_cell/shared/components/constants.dart';
 
 import '../../../models/donateByEventModel.dart';
 
-class VotesFanCubit extends Cubit<DonateBloodStates>{
+class DonateCubit extends Cubit<DonateBloodStates>{
 
-  VotesFanCubit():super(DonateBloodInitialState());
-  static VotesFanCubit get(context) => BlocProvider.of(context);
+  DonateCubit():super(DonateBloodInitialState());
+  static DonateCubit get(context) => BlocProvider.of(context);
 
 
 
@@ -20,7 +20,7 @@ class VotesFanCubit extends Cubit<DonateBloodStates>{
 
     // emit(CreateVoteLoadingState());
     var model = DonateByEventModel(
-        votes: [
+        donates: [
           {
             'name': name,
             'age': age,
@@ -30,6 +30,7 @@ class VotesFanCubit extends Cubit<DonateBloodStates>{
             'Period of donated before': periodOfDonatedBefore,
             'Time of donate': Timestamp.now(),
             'userId':userId,
+            'isDone':null,
           }]);
     var model2 = DonateModel2(
       name: name,
@@ -41,6 +42,7 @@ class VotesFanCubit extends Cubit<DonateBloodStates>{
       timestampOfBegin: Timestamp.now(),
       userId: userId,
       nameOfEvent: nameOfEvent,
+      isDone: null,
     );
 
     final docSnapshot = await FirebaseFirestore.instance
@@ -48,9 +50,9 @@ class VotesFanCubit extends Cubit<DonateBloodStates>{
         .doc(nameOfEvent)
         .get();
     if (docSnapshot.exists) {
-      final voteDocRefOfVotes = FirebaseFirestore.instance.collection('events').doc(nameOfEvent);
-      final voteDocSnapshot = await voteDocRefOfVotes.get();
-      var voteData = voteDocSnapshot.data();
+      final doc = FirebaseFirestore.instance.collection('events').doc(nameOfEvent);
+      final docSnapshot = await doc.get();
+      var data = docSnapshot.data();
 
       await FirebaseFirestore.instance
           .collection('events')
@@ -82,18 +84,18 @@ class VotesFanCubit extends Cubit<DonateBloodStates>{
             'listOfBloodByEvent': FieldValue.arrayUnion([model2.toMap()]),
           }).then((value)  {
 
-            emit(CreateVoteSuccessfullyState());
-            int currentRateOneStar = voteData?['target'] ?? 0;
+            emit(DonateByEventSuccessfullyState());
+            int currentRateOneStar = data?['target'] ?? 0;
             int newRateOneStar = currentRateOneStar + 1;
             FirebaseFirestore.instance.collection('events').doc(nameOfEvent).update({'target':newRateOneStar});
           }).catchError((error) {
-            emit(CreateVoteErrorState(error.toString()));
+            emit(DonateByEventErrorState(error.toString()));
             print(error);
           });
         }
-        emit(CreateVoteSuccessfullyState());
+        emit(DonateByEventSuccessfullyState());
       }).catchError((error) {
-        emit(CreateVoteErrorState(error.toString()));
+        emit(DonateByEventErrorState(error.toString()));
       });
     }
     else {
@@ -116,15 +118,15 @@ class VotesFanCubit extends Cubit<DonateBloodStates>{
               .update({
             'listOfBloodByEvent': FieldValue.arrayUnion([model2.toMap()]),
           }).then((value) {
-            emit(CreateVoteSuccessfullyState());
+            emit(DonateByEventSuccessfullyState());
           }).catchError((error) {
-            emit(CreateVoteErrorState(error.toString()));
+            emit(DonateByEventErrorState(error.toString()));
             print(error);
           });
         }
-        emit(CreateVoteSuccessfullyState());
+        emit(DonateByEventSuccessfullyState());
       }).catchError((error) {
-        emit(CreateVoteSuccessfullyState());
+        emit(DonateByEventSuccessfullyState());
       });
     }
 

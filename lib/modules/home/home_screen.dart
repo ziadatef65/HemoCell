@@ -301,11 +301,16 @@ class HomeScreen extends StatelessWidget {
                                             top: 210,
                                             left: 10,
                                             right: 10,
-                                            child: Text(
-                                              data?['details'],
-                                              style: GoogleFonts.lato(
-                                                fontSize: 16,
-                                                color: Colors.black,
+                                            bottom: 60,
+                                            child: SingleChildScrollView(
+                                              physics: BouncingScrollPhysics(),
+                                              child: Text(
+                                                data?['details'],
+                                                overflow: TextOverflow.fade,
+                                                style: GoogleFonts.lato(
+                                                  fontSize: 16,
+                                                  color: Colors.black,
+                                                ),
                                               ),
                                             ),
                                           ),

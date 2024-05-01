@@ -39,83 +39,33 @@ class MainCubit extends Cubit<DonationStates> {
     emit(ChangeBottomNavState());
   }
 
+
+  ///////////////////////////////////
+  int indexOfChangePages =0;
+  void ChangeOfIndexOfPages1(){
+    indexOfChangePages = 1;
+    emit(ChangeIndexSuccessfullyState());
+  }
+  void ChangeOfIndexOfPages2(){
+    indexOfChangePages = 2;
+    emit(ChangeIndexSuccessfullyState());
+
+  }
+  void ChangeOfIndexOfPages3(){
+    indexOfChangePages = 3;
+    emit(ChangeIndexSuccessfullyState());
+
+  }
+
+
+
+
+  //////////////////////////////////
   //........................this functions for user..................//
 
   // this function used to get the user data and display it in application
   UserModel? userModel;
 
-  // void getUserData() {
-  //   emit(GetUserLoadingState());
-  //   FirebaseFirestore.instance
-  //       .collection('users')
-  //       .doc(userId)
-  //       .get()
-  //       .then((dynamic value) {
-  //     userModel = UserModel.fromJson(value.data());
-  //     emit(GetUserSuccessState());
-  //   }).catchError((error) {
-  //     print(error.toString());
-  //     emit(GetUserErrorState(error.toString()));
-  //   });
-  // }
-
-  // void getOrdersData() {
-  //   emit(GetUserLoadingState());
-  //   FirebaseFirestore.instance
-  //       .collection('orders')
-  //       .doc(userId)
-  //       .get()
-  //       .then((dynamic value) {
-  //     orderModel = OrderModel.fromJson(value.data());
-  //     emit(GetUserSuccessState());
-  //   }).catchError((error) {
-  //     print(error.toString());
-  //     emit(GetUserErrorState(error.toString()));
-  //   });
-  // }
-//
-
-
-//
-//   void updateUser({
-//     required String name,
-//     required String phone,
-//     required String address,
-//     String? image,
-//   }) {
-//     emit(UserUpdateLoading());
-//
-//     UserModel model = UserModel(
-//       name: name,
-//       phone: phone,
-//       address: address,
-//       image: image ?? userModel!.image,
-//       email: userModel!.email,
-//       userId: userModel!.userId,
-//       isDelivery: userModel!.isDelivery!,
-//       nationalId: userModel?.nationalId,
-//       orderId: userModel?.orderId,
-//       orderNow: userModel?.orderNow,
-//       numberOfDonationMoney: userModel?.numberOfDonationMoney,
-//       numberOfDonationFood: userModel?.numberOfDonationFood,
-//       superAdmin: userModel?.superAdmin,
-//     );
-//     FirebaseFirestore.instance
-//         .collection('users')
-//         .doc(userModel!.userId)
-//         .update(model.toMap())
-//         .then((value) {
-//       getUserData();
-//     }).catchError((error) {
-//       emit(UserUpdateError());
-//     });
-//   }
-
-//
-
-
-
-  // delete order when it finished
   Stream<UserModel> get userModelStream => FirebaseFirestore.instance
       .collection('users')
       .doc(userId)
@@ -125,14 +75,7 @@ class MainCubit extends Cubit<DonationStates> {
 
 
 
-
-
-
-  ////
-
-  //////////////////
 }
 
 
-//......................................................................//
 

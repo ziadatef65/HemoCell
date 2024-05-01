@@ -46,6 +46,8 @@ dependencies:
   linear_progress_bar: ^1.1.1
   image_picker: ^0.8.6+4
   firebase_storage: ^11.7.2
+  panara_dialogs: ^0.1.4
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:

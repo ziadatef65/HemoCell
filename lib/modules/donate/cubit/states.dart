@@ -5,21 +5,13 @@ class DonateBloodInitialState extends DonateBloodStates{}
 
 
 
-class CreateVoteLoadingState extends DonateBloodStates{}
-class CreateVoteSuccessfullyState extends DonateBloodStates{}
-class CreateVoteErrorState extends DonateBloodStates{
+class DonateByEventLoadingState extends DonateBloodStates{}
+class DonateByEventSuccessfullyState extends DonateBloodStates{}
+class DonateByEventErrorState extends DonateBloodStates{
   final String error;
-  CreateVoteErrorState(this.error);
+  DonateByEventErrorState(this.error);
 }
 
 
 
-class ChooseTeamSuccessfully extends DonateBloodStates{}
-class DeleteTeamSuccessfully extends DonateBloodStates{}
 
-class ChooseRefereeSuccessfully extends DonateBloodStates{}
-class DeleteRefereeSuccessfully extends DonateBloodStates{}
-
-
-class ChooseScoreSuccessfully extends DonateBloodStates{}
-class ClearDataSuccessfully extends DonateBloodStates{}

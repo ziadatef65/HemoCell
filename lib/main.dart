@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         providers: [
         BlocProvider(create: (BuildContext context)=> MainCubit()),
         BlocProvider(create: (BuildContext context)=> AdminCubit()),
-        BlocProvider(create: (BuildContext context)=> VotesFanCubit()),
+        BlocProvider(create: (BuildContext context)=> DonateCubit()),
 
 
     ],

@@ -66,3 +66,5 @@ class DeleteOrderErrorState extends DonationStates{}
 class IncreaseNumberOfDonationSuccessState extends DonationStates{}
 class IncreaseNumberOfDonationErrorState extends DonationStates{}
 //
+class ChangeIndexSuccessfullyState extends DonationStates{}
+class ChangeIndexErrorState extends DonationStates{}

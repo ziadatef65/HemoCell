@@ -9,6 +9,7 @@ class UserModel {
   List? listOfDonations;
   List? listOfBloodBags;
   List? listOfBloodByEvent;
+  List? listOfQuestions;
 
 
   UserModel({
@@ -22,6 +23,7 @@ class UserModel {
     this.listOfDonations,
     this.listOfBloodBags,
     this.listOfBloodByEvent,
+    this.listOfQuestions,
 
   });
 
@@ -36,6 +38,7 @@ class UserModel {
     listOfDonations = json['listOfDonations'];
     listOfBloodBags = json['listOfBloodBags'];
     listOfBloodByEvent = json['listOfBloodByEvent'];
+    listOfQuestions = json['listOfQuestions'];
 
 
   }
@@ -54,6 +57,7 @@ class UserModel {
       'listOfDonations':listOfDonations,
       'listOfBloodBags':listOfBloodBags,
       'listOfBloodByEvent':listOfBloodByEvent,
+      'listOfQuestions':listOfQuestions,
     };
   }
 

@@ -92,7 +92,11 @@ class HemoCellLayout extends StatelessWidget {
                           backgroundColor: Colors.white,
 
                           label: 'Dashboard'),
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.question_answer),
+                          backgroundColor: Colors.white,
 
+                          label: 'Questions'),
                       BottomNavigationBarItem(
                           icon: Icon(CupertinoIcons.profile_circled),
                           backgroundColor: Colors.white,
@@ -134,6 +138,14 @@ class HemoCellLayout extends StatelessWidget {
                               CupertinoIcons.hand_raised_fill
                           ),
                           label: 'Need blood bag',
+                          backgroundColor: Colors.white
+
+                      ),
+                      BottomNavigationBarItem(
+                          icon: Icon(
+                              Icons.question_answer
+                          ),
+                          label: 'Questions',
                           backgroundColor: Colors.white
 
                       ),

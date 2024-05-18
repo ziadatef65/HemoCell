@@ -70,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                                     color: mainColor),
                               ),
                               Text(
-                                ', ${data?['name']}',
+                                ', ${data?['name'].split(" ")?.elementAt(0)}',
                                 style: GoogleFonts.lato(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
@@ -204,21 +204,34 @@ class HomeScreen extends StatelessWidget {
                             ));
                           } else if (snapshot.hasError) {
                             return Text('Error: ${snapshot.error}');
+
                           } else {
                             return ListView.builder(
                               physics: const BouncingScrollPhysics(),
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
                                 var data = snapshot.data?.docs[index].data();
-                                var usersId = snapshot.data?.docs[index].data()['usersId'];
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                var usersId = snapshot.data?.docs[index]
+                                    .data()['usersId'];
+                                return
+                                  data?['nameOfEvent'] == null || data?['imageOfEvent'] == null || data?['details'] == null || data?['fixedTarget'] == null ?
+                                  Container(
+                                      height: 200,
+                                      width: MediaQuery.of(context).size.width,
+                                      color: Colors.transparent,
+                                      child: Center(child: CircularProgressIndicator(color: mainColor,)))
+                                      :
+                                  Padding(
+                                  padding: const EdgeInsets.all(10),
                                   child: Material(
                                     elevation: 5,
                                     borderRadius: BorderRadius.circular(15),
-                                    child: Container(
+                                    child:
+
+
+                                    Container(
                                       height: 400,
-                                      width: 350,
+                                      width: dataLength == 1 ?MediaQuery.of(context).size.width-40 :MediaQuery.of(context).size.width-70,
                                       clipBehavior: Clip.none,
                                       decoration: BoxDecoration(
                                           color: Colors.grey.withOpacity(0.30),
@@ -390,48 +403,59 @@ class HomeScreen extends StatelessWidget {
                                                   padding:
                                                       const EdgeInsets.only(
                                                           right: 5, bottom: 10),
-                                                  child:
-                                                  usersId.contains(userId)
-                                                      ?
-                                                  Text(
-                                                    'Tanks for\nyour donate',
-                                                    textAlign: TextAlign.center,
-                                                    style: GoogleFonts.lato(
-                                                      fontWeight:FontWeight.bold,
-                                                      color:mainColor,
-                                                    ),
-                                                  )
-                                                      :
-                                                  Container(
-                                                    height: 30,
-                                                    width: 80,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
-                                                      color: mainColor,
-                                                    ),
-                                                    child: Center(
-                                                      child: TextButton(
-                                                          onPressed: () {
-                                                            Navigator.push(context, MaterialPageRoute(builder: (context)=>DonateByEventScreen(nameOfEvent: data?['nameOfEvent'],)));
-                                                          },
-                                                          child: FittedBox(
-                                                            child: Text(
-                                                              'Donate',
-                                                              style: GoogleFonts
-                                                                  .lato(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w900,
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 12,
-                                                              ),
-                                                            ),
-                                                          )),
-                                                    ),
-                                                  ),
+                                                  child: usersId
+                                                          .contains(userId)
+                                                      ? Text(
+                                                          'Tanks for\nyour donate',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style:
+                                                              GoogleFonts.lato(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color: mainColor,
+                                                          ),
+                                                        )
+                                                      : Container(
+                                                          height: 30,
+                                                          width: 80,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            color: mainColor,
+                                                          ),
+                                                          child: Center(
+                                                            child: TextButton(
+                                                                onPressed: () {
+                                                                  Navigator.push(
+                                                                      context,
+                                                                      MaterialPageRoute(
+                                                                          builder: (context) => DonateByEventScreen(
+                                                                                nameOfEvent: data?['nameOfEvent'],
+                                                                              )));
+                                                                },
+                                                                child:
+                                                                    FittedBox(
+                                                                  child: Text(
+                                                                    'Donate',
+                                                                    style:
+                                                                        GoogleFonts
+                                                                            .lato(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w900,
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          12,
+                                                                    ),
+                                                                  ),
+                                                                )),
+                                                          ),
+                                                        ),
                                                 ),
                                               ],
                                             ),

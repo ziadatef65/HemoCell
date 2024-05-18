@@ -9,6 +9,7 @@ import 'package:hemo_cell/modules/needBlood/need_blood_screen.dart';
 import 'package:hemo_cell/modules/profile/profile_screen.dart';
 
 import '../../models/userModel.dart';
+import '../../modules/questionsPart/questions_screen.dart';
 import '../../shared/components/constants.dart';
 
 class MainCubit extends Cubit<DonationStates> {
@@ -23,6 +24,7 @@ class MainCubit extends Cubit<DonationStates> {
     HomeScreen(),
     DonateScreen(),
     NeedBloodScreen(),
+    QuestionsPage(),
     ProfileScreen(),
   ];
   List<Widget> screens2 = [
@@ -30,6 +32,7 @@ class MainCubit extends Cubit<DonationStates> {
     DonateScreen(),
     NeedBloodScreen(),
     DashboardScreen(),
+    QuestionsPage(),
     ProfileScreen(),
 
   ];
@@ -41,7 +44,7 @@ class MainCubit extends Cubit<DonationStates> {
 
 
   ///////////////////////////////////
-  int indexOfChangePages =0;
+  int indexOfChangePages =1;
   void ChangeOfIndexOfPages1(){
     indexOfChangePages = 1;
     emit(ChangeIndexSuccessfullyState());

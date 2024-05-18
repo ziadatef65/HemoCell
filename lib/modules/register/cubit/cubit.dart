@@ -56,6 +56,8 @@ class RegisterCubit extends Cubit<RegisterStates> {
         listOfDonations: [],
         listOfBloodBags: [],
       listOfBloodByEvent: [],
+        listOfQuestions:[],
+
     );
     FirebaseFirestore.instance
         .collection('users')

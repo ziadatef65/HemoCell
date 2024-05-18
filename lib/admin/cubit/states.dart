@@ -57,3 +57,15 @@ class DeleteEventImageSuccessState extends AdminStates{}
 /////////////////
 class DeleteEventSuccessState extends AdminStates{}
 class DeleteEventErrorState extends AdminStates{}
+//////////////////
+class ChangeIndexSuccessfullyState extends AdminStates{}
+/////////////////////
+class ChangeTrueToFalseOrFalseToTrueSuccessfullyState extends AdminStates{}
+///////////////////
+class AddAnswerLoadingState extends AdminStates{}
+class AddAnswerSuccefullyState extends AdminStates{}
+class AddAnswerErrorState extends AdminStates{}
+///////////////////////
+class RefuseAnswerLoadingState extends AdminStates{}
+class RefuseSuccefullyState extends AdminStates{}
+class RefuseAnswerErrorState extends AdminStates{}
